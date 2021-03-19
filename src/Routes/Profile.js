@@ -1,5 +1,5 @@
-import { authService, dbService } from "fbase";
-import React, { useEffect, useState } from "react";
+import { authService } from "fbase";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 const Profile = ({ userObj, refreshUser }) => {
@@ -41,7 +41,7 @@ const Profile = ({ userObj, refreshUser }) => {
         <input type="submit" value="확인" />
       </form>
 
-      <button onClick={() => onHomeClick()}>로그아웃</button>
+      <button onClick={onHomeClick}>로그아웃</button>
     </div>
   );
 };
