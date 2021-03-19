@@ -1,4 +1,4 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 
 // * tweets는 문서의 아이디를 가지고있고 세부정보 값들을 가지고있음
@@ -13,6 +13,7 @@ const Tweet = ({ tweetObj, isOwer }) => {
     const sure = window.confirm("Are you sure you want to delete the Tweet?");
     if (sure) {
       await dbService.doc(`tweet/${tweetObj.id}`).delete();
+      await storageService.refFromURL(tweetObj.attachmentUrl).delete();
     }
   };
 
@@ -64,6 +65,9 @@ const Tweet = ({ tweetObj, isOwer }) => {
       ) : (
         <>
           <div style={{ marginBottom: 5 }}>
+            {tweetObj.attachmentUrl && (
+              <img src={tweetObj.attachmentUrl} width="50px" height="50px" />
+            )}
             <span>{tweetObj.text}</span>
           </div>
 
