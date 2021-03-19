@@ -33,7 +33,7 @@ const Tweet = ({ tweetObj, isOwer }) => {
     setNewTweet("");
   };
 
-  //fnc
+  //fn
   const toggleEditing = () => setEditing((prev) => !prev);
 
   return (
@@ -63,7 +63,7 @@ const Tweet = ({ tweetObj, isOwer }) => {
         </>
       ) : (
         <>
-          <div>
+          <div style={{ marginBottom: 5 }}>
             <span>{tweetObj.text}</span>
           </div>
 
