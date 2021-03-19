@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
+import { firebaseInstance } from "fbase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
+  const [error, setError] = useState("");
 
   const onChange = (event) => {
     const {
@@ -20,19 +22,27 @@ const Login = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      let data;
       if (newAccount) {
-        data = await authService.createUserWithEmailAndPassword(
-          email,
-          password
-        );
+        await authService.createUserWithEmailAndPassword(email, password);
       } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
+        await authService.signInWithEmailAndPassword(email, password);
       }
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      setError(error.message);
     }
+  };
+
+  const onSocialClick = async (event) => {
+    const {
+      target: { name },
+    } = event;
+    let provider;
+    if (name === "google") {
+      provider = new firebaseInstance.auth.GoogleAuthProvider();
+    } else if (name === "github") {
+      provider = new firebaseInstance.auth.GithubAuthProvider();
+    }
+    await authService.signInWithPopup(provider);
   };
 
   return (
@@ -54,11 +64,19 @@ const Login = () => {
           required
           maxLength="20"
         />
+        {error}
         <input type="submit" value={newAccount ? "계정만들기" : "로그인"} />
       </form>
+      <span onClick={() => setNewAccount((prev) => !prev)}>
+        {newAccount ? "로그인" : "회원가입"}
+      </span>
       <div>
-        <button>구글계정 로그인</button>
-        <button>깃허브계정 로그인</button>
+        <button onClick={onSocialClick} name="google">
+          구글계정 로그인
+        </button>
+        <button onClick={onSocialClick} name="github">
+          깃허브계정 로그인
+        </button>
       </div>
     </>
   );
