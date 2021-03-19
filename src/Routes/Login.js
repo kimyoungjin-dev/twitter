@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 import { firebaseInstance } from "fbase";
-import Form from "Components/Login/Form";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +47,27 @@ const Login = () => {
 
   return (
     <>
-      <Form onSubmit={onSubmit} onChange={onChange} error={error} />
+      <form onSubmit={onSubmit}>
+        <input
+          name="email"
+          type="email"
+          onChange={onChange}
+          placeholder="Email"
+          required
+          maxLength="20"
+        />
+        <input
+          name="password"
+          type="password"
+          onChange={onChange}
+          placeholder="Password"
+          required
+          maxLength="20"
+        />
+        {error}
+        <input type="submit" value={newAccount ? "계정만들기" : "로그인"} />
+      </form>
+
       <span onClick={() => setNewAccount((prev) => !prev)}>
         {newAccount ? "로그인" : "회원가입"}
       </span>
