@@ -12,8 +12,8 @@ const App = () => {
       if (user) {
         setUserObj({
           displayName: user.displayName,
-          id: user.uid,
-          updateProfile: (cta) => user.updateProfile(cta),
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
         });
       }
       setInit(true);
@@ -24,11 +24,10 @@ const App = () => {
     const user = authService.currentUser;
     setUserObj({
       displayName: user.displayName,
-      id: user.uid,
-      updateProfile: (props) => user.updateProfile(props),
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
     });
   };
-
   return (
     <>
       {init ? (
