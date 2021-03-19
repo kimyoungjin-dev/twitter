@@ -10,16 +10,33 @@ const App = () => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setUserObj(user);
+        setUserObj({
+          displayName: user.displayName,
+          id: user.uid,
+          updateProfile: (cta) => user.updateProfile(cta),
+        });
       }
       setInit(true);
     });
   }, []);
 
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      id: user.uid,
+      updateProfile: (props) => user.updateProfile(props),
+    });
+  };
+
   return (
     <>
       {init ? (
-        <Router isLogin={Boolean(userObj)} userObj={userObj} />
+        <Router
+          isLogin={Boolean(userObj)}
+          userObj={userObj}
+          refreshUser={refreshUser}
+        />
       ) : (
         <Loading />
       )}
