@@ -10,25 +10,26 @@ import Home from "Routes/Home";
 import Profile from "Routes/Profile";
 import Navigation from "./Navigation";
 
-export default ({ isLogin, userObj }) => {
+export default ({ isLogin, userObj, refreshUser }) => {
   return (
     <Router>
-      {isLogin && <Navigation />}
+      {isLogin && <Navigation userObj={userObj} />}
       <Switch>
         {isLogin ? (
           <>
             <Route exact path="/">
               <Home userObj={userObj} />
             </Route>
-            <Route path="profile">
-              <Profile />
+
+            <Route exact path="/profile">
+              <Profile userObj={userObj} refreshUser={refreshUser} />
             </Route>
-            <Redirect from="*" to="/" />
           </>
         ) : (
           <>
-            <Route component={Login} path="/" />
-            <Redirect from="*" to="/" />
+            <Route exact path="/">
+              <Login />
+            </Route>
           </>
         )}
       </Switch>
