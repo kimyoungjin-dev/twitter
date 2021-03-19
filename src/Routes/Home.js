@@ -3,6 +3,22 @@ import { dbService } from "fbase";
 
 const Home = () => {
   const [tweet, setTweet] = useState("");
+  const [tweets, setTweets] = useState([]);
+  console.log(tweets);
+  const getData = async () => {
+    const dbTweet = await dbService.collection("tweet").get();
+    dbTweet.forEach((document) => {
+      const tweetObj = {
+        ...document.data(),
+        id: document.id,
+      };
+      setTweets((prev) => [tweetObj, ...prev]);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const onChange = (event) => {
     const {
@@ -31,6 +47,11 @@ const Home = () => {
         />
         <input type="submit" value="트윗보내기" />
       </form>
+      <div>
+        {tweets.map((e) => (
+          <div key={e.id}>{e.tweet}</div>
+        ))}
+      </div>
     </div>
   );
 };
