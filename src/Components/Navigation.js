@@ -1,17 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Container = styled.div``;
+
+const ListContainer = styled.div`
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+`;
+
+const List = styled.li``;
 
 const Navigation = ({ userObj }) => {
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
+    <Container>
+      <ListContainer>
+        <List>
+          <Link to="/">Home</Link>
+        </List>
 
-      <li>
-        <Link to="/profile">{userObj.displayName}</Link>
-      </li>
-    </ul>
+        <List>
+          <Link to="/profile">{userObj.displayName}</Link>
+        </List>
+      </ListContainer>
+    </Container>
   );
 };
 
