@@ -4,6 +4,20 @@ import { dbService } from "fbase";
 import Tweet from "Components/Tweet";
 import { v4 as uuid } from "uuid";
 import HomeForm from "Components/Home/HomeForm";
+import HomeImage from "images/homeimage.jpeg";
+import styled from "styled-components";
+
+const Container = styled.div``;
+
+const ImageContainer = styled.div`
+  background-color: blue;
+  margin-top: 10px;
+  height: 300px;
+`;
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 
 const Home = ({ userObj }) => {
   const [tweet, setTweet] = useState("");
@@ -75,7 +89,10 @@ const Home = ({ userObj }) => {
   const onClearPhotoClick = () => setAttachment(null);
 
   return (
-    <div>
+    <Container>
+      <ImageContainer>
+        <Image src={HomeImage} />
+      </ImageContainer>
       <HomeForm
         onSubmit={onSubmit}
         onChange={onChange}
@@ -84,7 +101,7 @@ const Home = ({ userObj }) => {
         attachment={attachment}
         onClearPhotoClick={onClearPhotoClick}
       />
-      <div>
+      <>
         {tweets.map((tweet) => (
           <Tweet
             key={tweet.id}
@@ -92,8 +109,8 @@ const Home = ({ userObj }) => {
             isOwer={tweet.creatorId === userObj.uid}
           />
         ))}
-      </div>
-    </div>
+      </>
+    </Container>
   );
 };
 
