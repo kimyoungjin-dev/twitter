@@ -26,7 +26,6 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  padding-left: 20px;
   background-color: rgb(236, 239, 244);
   border: none;
   border-radius: 20px;
@@ -37,6 +36,9 @@ const Input = styled.input`
     margin-left: 10px;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.3);
+  }
+  :not(:last-child) {
+    padding-left: 20px;
   }
   :last-child {
     background-color: rgb(109, 195, 239);
