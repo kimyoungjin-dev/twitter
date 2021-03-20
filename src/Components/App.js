@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "./Router";
 import { authService } from "fbase";
 import Loading from "Components/Loading";
+import GlobalStyle from "./GlobalStyle";
 
 const App = () => {
   const [init, setInit] = useState(false);
@@ -30,6 +31,7 @@ const App = () => {
   };
   return (
     <>
+      <GlobalStyle />
       {init ? (
         <Router
           isLogin={Boolean(userObj)}
