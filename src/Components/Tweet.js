@@ -1,5 +1,14 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
+import styled from "styled-components";
+
+const EditingContainer = styled.div``;
+
+const EditingText = styled.span``;
+
+const EditingForm = styled.form``;
+
+const EditingInput = styled.input``;
 
 // * tweets는 문서의 아이디를 가지고있고 세부정보 값들을 가지고있음
 
@@ -38,18 +47,18 @@ const Tweet = ({ tweetObj, isOwer }) => {
   const toggleEditing = () => setEditing((prev) => !prev);
 
   return (
-    <div>
+    <EditingContainer>
       {editing ? (
         <>
-          <span>{tweetObj.text}</span>
-          <form
+          <EditingText>{tweetObj.text}</EditingText>
+          <EditingForm
             onSubmit={onSubmit}
             style={{
               flexDirection: "row",
               display: "flex",
             }}
           >
-            <input
+            <EditingInput
               type="text"
               placeholder="수정할 트윗을 작성하세요"
               onChange={onChange}
@@ -60,7 +69,7 @@ const Tweet = ({ tweetObj, isOwer }) => {
               <input type="submit" value="트윗하기" />
               <button onClick={() => toggleEditing()}>취소하기</button>
             </div>
-          </form>
+          </EditingForm>
         </>
       ) : (
         <>
@@ -79,7 +88,7 @@ const Tweet = ({ tweetObj, isOwer }) => {
           )}
         </>
       )}
-    </div>
+    </EditingContainer>
   );
 };
 
