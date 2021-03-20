@@ -13,10 +13,16 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: none;
   border: 1px solid black;
-  padding: 10px;
-  border-radius: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: black;
 `;
 
 const Social = () => {
@@ -37,12 +43,14 @@ const Social = () => {
     <Container>
       <ButtonContainer>
         <Button onClick={onSocialClick} name="google">
-          <AiFillGoogleCircle />
-          <span> 구글계정 로그인</span>
+          <AiFillGoogleCircle color={"white"} size={30} />
+          <span style={{ color: "white", marginLeft: 10 }}>
+            구글계정 로그인
+          </span>
         </Button>
         <Button onClick={onSocialClick} name="github">
-          <AiFillGithub />
-          <span> Github 로그인</span>
+          <AiFillGithub color={"white"} size={30} />
+          <span style={{ color: "white", marginLeft: 10 }}> Github 로그인</span>
         </Button>
       </ButtonContainer>
     </Container>
