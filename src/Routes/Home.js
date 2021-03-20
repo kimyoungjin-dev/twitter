@@ -3,6 +3,7 @@ import { storageService } from "fbase";
 import { dbService } from "fbase";
 import Tweet from "Components/Tweet";
 import { v4 as uuid } from "uuid";
+import HomeForm from "Components/Home/HomeForm";
 
 const Home = ({ userObj }) => {
   const [tweet, setTweet] = useState("");
@@ -71,31 +72,18 @@ const Home = ({ userObj }) => {
     reader.readAsDataURL(theFile); //불러온 reader로 파일을 읽는다.
   };
 
-  //fn
-
   const onClearPhotoClick = () => setAttachment(null);
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="당신의 트윗을 적어보세요"
-          maxLength={120}
-          onChange={onChange}
-          value={tweet}
-        />
-        <input type="submit" value="트윗보내기" style={{ marginBottom: 20 }} />
-        <input type="file" accept="image/*" onChange={onFileChage} />
-        <div>
-          {attachment && (
-            <div>
-              <img src={attachment} width="50px" height="50px" />
-              <button onClick={() => onClearPhotoClick()}>삭제하기</button>
-            </div>
-          )}
-        </div>
-      </form>
+      <HomeForm
+        onSubmit={onSubmit}
+        onChange={onChange}
+        tweet={tweet}
+        onFileChage={onFileChage}
+        attachment={attachment}
+        onClearPhotoClick={onClearPhotoClick}
+      />
       <div>
         {tweets.map((tweet) => (
           <Tweet
