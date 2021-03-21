@@ -1,7 +1,8 @@
 import { firebaseInstance, authService } from "fbase";
 import React from "react";
 import styled from "styled-components";
-import { AiFillGithub, AiFillGoogleCircle } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
 
 const Container = styled.div`
   width: 300px;
@@ -9,11 +10,11 @@ const Container = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `;
 
 const Button = styled.button`
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +24,10 @@ const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   background-color: black;
+
+  :not(:first-child) {
+    margin-left: 10px;
+  }
 `;
 
 const Social = () => {
@@ -36,21 +41,16 @@ const Social = () => {
     } else if (name === "github") {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
-    await authService.signInWithPopup(provider);
+    const data = await authService.signInWithPopup(provider);
   };
-
   return (
     <Container>
       <ButtonContainer>
         <Button onClick={onSocialClick} name="google">
-          <AiFillGoogleCircle color={"white"} size={30} />
-          <span style={{ color: "white", marginLeft: 10 }}>
-            구글계정 로그인
-          </span>
+          <FcGoogle size={30} /> Continue with Google
         </Button>
         <Button onClick={onSocialClick} name="github">
-          <AiFillGithub color={"white"} size={30} />
-          <span style={{ color: "white", marginLeft: 10 }}> Github 로그인</span>
+          <AiFillGithub size={30} /> Continue with Github
         </Button>
       </ButtonContainer>
     </Container>

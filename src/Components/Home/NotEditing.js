@@ -6,12 +6,13 @@ import { BsTrash } from "react-icons/bs";
 const Container = styled.div``;
 
 const Contents = styled.div`
+  background-color: gray;
   display: flex;
-  height: 100px;
+  height: 40px;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
   padding-left: 10px;
 
   ::placeholder {
@@ -21,15 +22,17 @@ const Contents = styled.div`
 `;
 
 const Text = styled.span`
-  font-size: 20px;
+  font-size: 18px;
+  color: white;
 `;
 
 const Photo = styled.img`
-  width: 50px;
-  height: 50px;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
   position: absolute;
   right: 0;
-  top: -20px;
+  top: -10px;
 `;
 
 const ButtonContainer = styled.div`
@@ -58,12 +61,12 @@ const NotEditing = ({ tweetObj, isOwer, onDeleteClick, toggleEditing }) => {
         <ButtonContainer>
           <AiFillEdit
             style={{ padding: 5, cursor: "pointer" }}
-            size={40}
+            size={35}
             onClick={() => toggleEditing()}
           />
           <BsTrash
             style={{ padding: 5, cursor: "pointer" }}
-            size={35}
+            size={30}
             onClick={() => onDeleteClick()}
           />
         </ButtonContainer>
