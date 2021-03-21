@@ -4,17 +4,17 @@ import styled from "styled-components";
 import { FaTwitter } from "react-icons/fa";
 
 const Container = styled.div`
-  display: flex;
   align-items: center;
   justify-content: center;
+  display: flex;
   flex-direction: column;
 `;
 
 const LogoTitle = styled.span`
-  font-weight: bold;
   font-size: 30px;
   display: block;
   margin: 20px 0px;
+  font-family: "Lato", sans-serif;
 `;
 
 const Form = styled.form`
