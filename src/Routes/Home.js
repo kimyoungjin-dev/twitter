@@ -4,7 +4,7 @@ import { dbService } from "fbase";
 import Tweet from "Components/Tweet";
 import { v4 as uuid } from "uuid";
 import HomeForm from "Components/Home/HomeForm";
-import HomeImage from "images/homeimage.jpeg";
+import HomeImage from "images/logo.png";
 import styled from "styled-components";
 
 const Container = styled.div``;
@@ -91,7 +91,7 @@ const Home = ({ userObj }) => {
   return (
     <Container>
       <ImageContainer>
-        <Image src={HomeImage} />
+        <Image src={HomeImage} style={{ backgroundColor: "white" }} />
       </ImageContainer>
       <HomeForm
         onSubmit={onSubmit}
