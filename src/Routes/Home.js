@@ -4,7 +4,7 @@ import { dbService } from "fbase";
 import Tweet from "Components/Tweet";
 import { v4 as uuid } from "uuid";
 import HomeForm from "Components/Home/HomeForm";
-import HomeImage from "images/logo.png";
+import HomeImage from "images/HomeMainImg.jpeg";
 import styled from "styled-components";
 
 const Container = styled.div``;
