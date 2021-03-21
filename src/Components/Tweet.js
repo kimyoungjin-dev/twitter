@@ -1,14 +1,13 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 import styled from "styled-components";
+import IsEditing from "./Home/IsEditing";
+import NotEditing from "./Home/NotEditing";
 
-const EditingContainer = styled.div``;
-
-const EditingText = styled.span``;
-
-const EditingForm = styled.form``;
-
-const EditingInput = styled.input``;
+const Container = styled.div`
+  padding: 0px 10px;
+  margin-top: 10px;
+`;
 
 // * tweets는 문서의 아이디를 가지고있고 세부정보 값들을 가지고있음
 
@@ -41,54 +40,31 @@ const Tweet = ({ tweetObj, isOwer }) => {
       text: newTweet,
     });
     setNewTweet("");
+    toggleEditing();
   };
 
   //fn
   const toggleEditing = () => setEditing((prev) => !prev);
 
   return (
-    <EditingContainer>
+    <Container>
       {editing ? (
-        <>
-          <EditingText>{tweetObj.text}</EditingText>
-          <EditingForm
-            onSubmit={onSubmit}
-            style={{
-              flexDirection: "row",
-              display: "flex",
-            }}
-          >
-            <EditingInput
-              type="text"
-              placeholder="수정할 트윗을 작성하세요"
-              onChange={onChange}
-              value={newTweet}
-            />
-
-            <div style={{ marginLeft: 5 }}>
-              <input type="submit" value="트윗하기" />
-              <button onClick={() => toggleEditing()}>취소하기</button>
-            </div>
-          </EditingForm>
-        </>
+        <IsEditing
+          tweetObj={tweetObj}
+          onSubmit={onSubmit}
+          onChange={onChange}
+          newTweet={newTweet}
+          toggleEditing={toggleEditing}
+        />
       ) : (
-        <>
-          <div style={{ marginBottom: 5 }}>
-            {tweetObj.attachmentUrl && (
-              <img src={tweetObj.attachmentUrl} width="50px" height="50px" />
-            )}
-            <span>{tweetObj.text}</span>
-          </div>
-
-          {isOwer && (
-            <div>
-              <button onClick={() => toggleEditing()}>트윗 수정하기</button>
-              <button onClick={() => onDeleteClick()}>트윗 삭제하기</button>
-            </div>
-          )}
-        </>
+        <NotEditing
+          tweetObj={tweetObj}
+          isOwer={isOwer}
+          toggleEditing={toggleEditing}
+          onDeleteClick={onDeleteClick}
+        />
       )}
-    </EditingContainer>
+    </Container>
   );
 };
 

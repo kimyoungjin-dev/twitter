@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { AiFillTwitterCircle } from "react-icons/ai";
+import { GiTwirlyFlower } from "react-icons/gi";
+import { MdAddAPhoto } from "react-icons/md";
 
 const Container = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ const Form = styled.form`
 const Input = styled.input`
   all: unset;
   width: 80%;
-  border-radius: 20px;
+  border-radius: 10px;
   padding-left: 20px;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.7);
@@ -28,17 +29,11 @@ const Input = styled.input`
   }
 `;
 
-const InputButton = styled.button`
-  all: unset;
-  text-align: center;
-  width: 20%;
-`;
-
 const File = styled.input`
   position: absolute;
   width: 40px;
   height: 50px;
-  right: 80px;
+  right: 100px;
   border-radius: 20px;
 `;
 
@@ -46,7 +41,7 @@ const Label = styled.label`
   position: absolute;
   width: 40px;
   height: 50px;
-  right: 80px;
+  right: 65px;
 `;
 
 const Attachent = styled.div`
@@ -85,9 +80,16 @@ const HomeForm = ({
             onChange={onChange}
             value={tweet}
           />
-          <InputButton type="submit">트윗하기</InputButton>
+          <GiTwirlyFlower
+            type="submit"
+            style={{
+              width: "10%",
+              height: "100%",
+              marginLeft: 10,
+            }}
+          />
           <Label for="attach-file">
-            <AiFillTwitterCircle style={{ width: "100%", height: "100%" }} />
+            <MdAddAPhoto style={{ width: "100%", height: "100%" }} />
           </Label>
           <File
             style={{ opacity: 0 }}
