@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { GiTwirlyFlower } from "react-icons/gi";
 import { MdAddAPhoto } from "react-icons/md";
 
 const Container = styled.div`
   width: 100%;
   position: fixed;
   bottom: 30px;
+  z-index: 1;
 `;
 
 const Form = styled.form`
@@ -23,10 +23,30 @@ const Input = styled.input`
   border-radius: 10px;
   padding-left: 20px;
   outline: none;
+  font-family: "PT Serif", serif;
   border: 1px solid rgba(0, 0, 0, 0.7);
   ::placeholder {
     padding-left: 10px;
+    font-family: "PT Serif", serif;
   }
+`;
+
+const ButtonContainer = styled.div`
+  background-color: skyblue;
+  opacity: 0.7;
+  border-radius: 100%;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+`;
+
+const Button = styled.button`
+  all: unset;
+  width: 100%;
+  text-align: center;
+  font-family: "PT Serif", serif;
 `;
 
 const File = styled.input`
@@ -57,8 +77,8 @@ const Contents = styled.div`
 `;
 
 const Image = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 `;
 
 const HomeForm = ({
@@ -75,20 +95,17 @@ const HomeForm = ({
         <Form onSubmit={onSubmit}>
           <Input
             type="text"
-            placeholder="당신의 트윗을 적어보세요"
+            placeholder="Write a Tweet"
             maxLength={120}
             onChange={onChange}
             value={tweet}
           />
-          <GiTwirlyFlower
-            type="submit"
-            style={{
-              width: "10%",
-              height: "100%",
-              marginLeft: 10,
-            }}
-          />
-          <Label for="attach-file">
+
+          <ButtonContainer>
+            <Button>Tweet</Button>
+          </ButtonContainer>
+
+          <Label htmlFor="attach-file">
             <MdAddAPhoto style={{ width: "100%", height: "100%" }} />
           </Label>
           <File
@@ -109,7 +126,7 @@ const HomeForm = ({
               style={{ marginLeft: 10 }}
               onClick={() => onClearPhotoClick()}
             >
-              취소
+              Cancel
             </span>
           </Contents>
         )}
